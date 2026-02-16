@@ -2,36 +2,36 @@
 
 ## Introduction
 
-### PPM is a Python Project Manager it is used to create, delete and manage projects 
+ PPM is a Python Project Manager it is used to create, delete and manage projects 
 
 ## Commands
 
-### Currently it only has 3  commads
+ Currently it only has 3  commads
 ```
 ppm create <project_name>
 ```
-### create command will create an dir with the name given in ~/.ppm and run uv init in that dir
+ create command will create an dir with the name given in ~/.ppm and run uv init in that dir
 
 ```
 ppm remove <project_name>
 ```
-### remove command will delete the project specified in the ~/.ppm dir
+ remove command will delete the project specified in the ~/.ppm dir
 ```
 ppm sync
 ```
-### or
+ or
 ```
 ppm sync <project_name>
 ```
-### The sync command will do 2 things is project name is not specified it will sync every project in the ~/.ppm dir is project name is specified then it will only sync that dir
+ The sync command will do 2 things is project name is not specified it will sync every project in the ~/.ppm dir is project name is specified then it will only sync that dir
 
 ## Roadmap
 
-### I envision adding more commands like find, list, du(disk usage), info, archive etc. I also want to add an feture encrypt the project.
+I envision adding more commands like find, list, du(disk usage), info, archive etc. I also want to add an feture encrypt the project.
 
 ## Contributing
 
-### If you liked this project and wanted to help please contribute. Here's how you can help:
+If you liked this project and wanted to help please contribute. Here's how you can help:
 * Update the README to be more accurate
 * Help in adding fetures like archive, find etc.
 * Improve the code with better logic and comments
@@ -48,4 +48,4 @@ ppm sync <project_name>
 
 ## Core skills
 
-### I think if you know intermediate level of python and have a bit of or more experience with the tools and utils in the Tech Stack section I think your contribution will be very helpful. And Thank you for reading this far.
+I think if you know intermediate level of python and have a bit of or more experience with the tools and utils in the Tech Stack section I think your contribution will be very helpful. And Thank you for reading this far.
