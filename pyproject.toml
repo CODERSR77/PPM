@@ -1,0 +1,10 @@
+[project]
+name = "ppm"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "cryptography>=46.0.5",
+    "typer>=0.23.1",
+]
