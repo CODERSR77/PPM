@@ -49,3 +49,20 @@ If you liked this project and wanted to help please contribute. Here's how you c
 ## Core skills
 
 I think if you know intermediate level of python and have a bit of or more experience with the tools and utils in the Tech Stack section I think your contribution will be very helpful. And Thank you for reading this far.
+
+## Getting Started
+
+### Prerequisites
+
+* Python >=3.14
+* UV
+### Installation
+
+1. Clone the repo
+2. Run `uv sync` inside it
+3. Run `uv pip install -e .` inside it
+4. Then If on MacOS/Linux run `source .venv/bin/activate` Else If on Windows run `.venv\Scripts\activate`
+
+### Usage
+
+After these steps you can finally just run `ppm sync` and other commands like that
