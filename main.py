@@ -62,5 +62,10 @@ def sync(project_name: Optional[str] = typer.Argument(None)):
             typer.echo(f"{i} was successfully synced")
             typer.echo(f"Given output: {result.stdout}")
             typer.echo(f"Given error: {result.stderr}")
+@app.command()
+def list():
+    for i in workspace.iterdir():
+         typer.echo(i.name)
+
 if __name__ == "__main__":
     app()
