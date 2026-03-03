@@ -20,11 +20,21 @@ import typer
 from typing import Optional
 import shutil
 import subprocess
+from enum import Enum
+from compression import zstd
 
 app = typer.Typer()
 
 #File System
 workspace = Path("~/.ppm").expanduser()
+backup_dir = Path("~/.ppm-backup").expanduser()
+
+class CompressionFormat(str,Enum):
+    gzip = "gztar"
+    zstandard = "zstd"
+    xz = "xztar"
+    bzip2 = "bztar"
+    zip = "zip"
 
 @app.command()
 def create(project_name: str):
@@ -66,6 +76,34 @@ def sync(project_name: Optional[str] = typer.Argument(None)):
 def list():
     for i in workspace.iterdir():
          typer.echo(i.name)
+@app.command()
+def archive(project_name,fmt: CompressionFormat = typer.Option(CompressionFormat.zstandard, "--format", "-f")):
+    full_project_name = workspace / project_name 
+    archive_base_path = backup_dir / project_name
+    venv_dir = full_project_name / ".venv"
+    if venv_dir.exists():
+        shutil.rmtree(venv_dir)
+        typer.echo("The projects .venv was removed")
+    if not full_project_name.exists():
+        typer.echo("The project doesn't exist")
+    else:
+        if fmt == CompressionFormat.zstandard:
+            tar_path = shutil.make_archive(str(archive_base_path),"tar",root_dir=full_project_name)
+            typer.echo("Tarball created...")
+            zstd_path  = f"{tar_path}.zst"
+            with open(tar_path,"rb") as f_in:
+                with zstd.open(zstd_path,"wb") as f_out:
+                    shutil.copyfileobj(f_in,f_out)
+            typer.echo("Tarball compressed...")
+            os.remove(tar_path)
+            typer.echo("Temp Tarball removed...")
+            shutil.rmtree(full_project_name)
+            typer.echo("Removed the project")
+        else:
+            final_path = shutil.make_archive(str(archive_base_path),fmt.value,root_dir=full_project_name)
+            typer.echo("Project compressed...")
+            shutil.rmtree(full_project_name)
+            typer.echo("Removed project...")
 
 if __name__ == "__main__":
     app()
