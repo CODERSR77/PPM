@@ -62,7 +62,6 @@ I think if you know intermediate level of python and have a bit of or more exper
 2. Run `uv sync` inside it
 3. Run `uv pip install -e .` inside it
 4. Then If on MacOS/Linux run `source .venv/bin/activate` Else If on Windows run `.venv\Scripts\activate`
-5. Run `mkdir ~/.ppm`
 ### Usage
 
 After these steps you can finally just run `ppm sync` and other commands like that
