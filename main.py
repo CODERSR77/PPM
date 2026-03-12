@@ -13,6 +13,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+from os.path import exists
 from pathlib import Path
 import os
 from click import confirm
@@ -27,7 +28,9 @@ app = typer.Typer()
 
 #File System
 workspace = Path("~/.ppm").expanduser()
+workspace.mkdir(parents=True,exist_ok=True)
 backup_dir = Path("~/.ppm-backup").expanduser()
+backup_dir.mkdir(parents=True,exist_ok=True)
 
 class CompressionFormat(str,Enum):
     gzip = "gztar"
