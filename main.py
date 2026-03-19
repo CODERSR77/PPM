@@ -76,9 +76,12 @@ def sync(project_name: Optional[str] = typer.Argument(None)):
             typer.echo(f"Given output: {result.stdout}")
             typer.echo(f"Given error: {result.stderr}")
 @app.command()
-def list():
+def list(a: bool = typer.Option(False,"--all","-a")):
     for i in workspace.iterdir():
          typer.echo(i.name)
+    if a:
+        for i in backup_dir.iterdir():
+            typer.echo(i.name)
 @app.command()
 def archive(project_name,fmt: CompressionFormat = typer.Option(CompressionFormat.zstandard, "--format", "-f")):
     full_project_name = workspace / project_name 
