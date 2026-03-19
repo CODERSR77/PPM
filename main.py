@@ -111,5 +111,14 @@ def archive(project_name,fmt: CompressionFormat = typer.Option(CompressionFormat
             shutil.rmtree(full_project_name)
             typer.echo("Removed project...")
 
+@app.command("open")
+def open_project(project_name: str,editor: str = typer.Option("nvim","--editor","-e")):
+    full_project_name = workspace / project_name
+    if not full_project_name.exists():
+        typer.echo(f"{project_name} does not exist or is archived!")
+    else:
+        command = f"{editor} {full_project_name}"
+        subprocess.run(command,shell=True, check=True)
+
 if __name__ == "__main__":
     app()
